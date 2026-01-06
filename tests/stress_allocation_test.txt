@@ -1,0 +1,28 @@
+init memory 2048
+set allocator first
+malloc 50
+malloc 45
+malloc 60
+malloc 55
+malloc 70
+malloc 40
+malloc 80
+malloc 35
+malloc 90
+malloc 65
+dump
+stats
+free 2
+free 4
+free 6
+free 8
+free 10
+dump
+stats
+malloc 100
+malloc 30
+malloc 120
+malloc 25
+dump
+stats
+exit

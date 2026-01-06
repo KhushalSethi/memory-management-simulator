@@ -1,0 +1,25 @@
+init memory 1000
+set allocator best
+malloc 200
+malloc 100
+malloc 300
+malloc 50
+dump
+stats
+init memory 1000
+set allocator worst
+malloc 200
+malloc 100
+malloc 300
+malloc 50
+dump
+stats
+init memory 1000
+set allocator first
+malloc 200
+malloc 100
+malloc 300
+malloc 50
+dump
+stats
+exit

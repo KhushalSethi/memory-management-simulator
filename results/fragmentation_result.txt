@@ -1,0 +1,40 @@
+Memory Management Simulator
+Type 'help' for available commands
+> memory of size 800 created 
+> Allocator set
+> Memory allocated with ID: 1 using first-fit
+> Memory allocated with ID: 2 using first-fit
+> Memory allocated with ID: 3 using first-fit
+> Memory allocated with ID: 4 using first-fit
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Memory alloted from: 100 to: 179 to user with ID: 2
+Memory alloted from: 180 to: 299 to user with ID: 3
+Memory alloted from: 300 to: 359 to user with ID: 4
+Free memory from: 360 to: 799
+> Total memory 800
+Free memory 440
+Allocated memory 360
+External Fragmentation 0%
+> Memory with ID 2 freed successfully
+> Memory with ID 4 freed successfully
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Free memory from: 100 to: 179
+Memory alloted from: 180 to: 299 to user with ID: 3
+Free memory from: 300 to: 799
+> Total memory 800
+Free memory 580
+Allocated memory 220
+External Fragmentation 13.7931%
+> Memory allocated with ID: 5 using first-fit
+> Memory allocated with ID: 6 using first-fit
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Memory alloted from: 100 to: 149 to user with ID: 5
+Free memory from: 150 to: 179
+Memory alloted from: 180 to: 299 to user with ID: 3
+Memory alloted from: 300 to: 339 to user with ID: 6
+Free memory from: 340 to: 799
+> Total memory 800
+Free memory 490
+Allocated memory 310
+External Fragmentation 6.12245%
+> End

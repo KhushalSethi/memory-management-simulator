@@ -27,6 +27,3 @@ Thumbs.db
 
 # Log files
 *.log
-
-# PDF files (if you don't want to include the assignment)
-*.pdf

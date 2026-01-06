@@ -1,0 +1,17 @@
+init memory 800
+set allocator first
+malloc 100
+malloc 80
+malloc 120
+malloc 60
+dump
+stats
+free 2
+free 4
+dump
+stats
+malloc 50
+malloc 40
+dump
+stats
+exit

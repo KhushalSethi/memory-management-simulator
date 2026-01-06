@@ -1,0 +1,14 @@
+init memory 2048
+init cache 1
+128
+32
+2
+read 0
+read 64
+read 128
+read 192
+read 256
+read 0
+read 320
+cache stats
+exit

@@ -1,0 +1,12 @@
+Memory Management Simulator
+Type 'help' for available commands
+> memory of size 4096 created 
+> Enter Cache size
+Enter Block Size 
+Enter associativity
+> Enter Cache size
+Enter Block Size 
+Enter associativity
+> Found in main memory
+> Found in main memory
+> 

@@ -1,0 +1,9 @@
+init memory 1024
+init virtual 2048 1024 256
+translate 0
+translate 100
+translate 256
+translate 500
+translate 1000
+translate 1500
+exit

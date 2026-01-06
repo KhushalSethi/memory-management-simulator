@@ -1,0 +1,11 @@
+help
+init memory 1024
+set allocator first
+malloc 50
+malloc 75
+malloc 100
+malloc 125
+malloc 150
+dump
+stats
+exit

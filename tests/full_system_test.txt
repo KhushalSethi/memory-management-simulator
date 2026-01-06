@@ -1,0 +1,24 @@
+init memory 2048
+set allocator best
+init cache 1
+256
+32
+4
+init cache 2
+512
+32
+8
+init virtual 4096 2048 256
+malloc 200
+read 100
+translate 500
+malloc 150
+read 200
+translate 1000
+free 1
+read 100
+translate 1500
+dump
+stats
+cache stats
+exit

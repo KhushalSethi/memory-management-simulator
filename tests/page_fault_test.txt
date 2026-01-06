@@ -1,0 +1,8 @@
+init virtual 2048 512 256
+translate 0
+translate 256
+translate 512
+translate 0
+translate 768
+translate 256
+exit
