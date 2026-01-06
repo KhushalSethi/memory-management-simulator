@@ -1,13 +1,23 @@
 # Memory Management Simulator - Technical Documentation
 
+## Implementation Summary
+
+**✅ IMPLEMENTED FEATURES:**
+- **Physical Memory Management**: Linked-list based allocation with first-fit, best-fit, and worst-fit strategies
+- **Cache Hierarchy**: Two-level (L1/L2) cache simulation with LRU replacement policy
+- **Virtual Memory**: Page-based virtual memory with address translation and page fault handling
+- **Interactive CLI**: Command-line interface for testing all subsystems
+- **Memory Coalescing**: Automatic merging of adjacent free blocks
+
+---
+
 ## Table of Contents
 1. [Memory Layout and Assumptions](#memory-layout-and-assumptions)
 2. [Allocation Strategy Implementations](#allocation-strategy-implementations)
-3. [Buddy System Design](#buddy-system-design)
-4. [Cache Hierarchy and Replacement Policy](#cache-hierarchy-and-replacement-policy)
-5. [Virtual Memory Model](#virtual-memory-model)
-6. [Address Translation Flow](#address-translation-flow)
-7. [Limitations and Simplifications](#limitations-and-simplifications)
+3. [Cache Hierarchy and Replacement Policy](#cache-hierarchy-and-replacement-policy)
+4. [Virtual Memory Model](#virtual-memory-model)
+5. [Address Translation Flow](#address-translation-flow)
+6. [Limitations and Simplifications](#limitations-and-simplifications)
 
 ---
 
@@ -141,53 +151,6 @@ Coalescing Process:
 Before Coalescing:
 [Used][Free-50][Free-30][Used] → [Used][Free-80][Used]
 ```
-
----
-
-## Buddy System Design
-
-**Note**: The current implementation does not include a buddy system allocator. However, here's the theoretical design that could be integrated:
-
-### Theoretical Buddy System Architecture
-
-```
-Buddy System Memory Layout:
-Total Memory Size: 2^n bytes (e.g., 1024 = 2^10)
-
-Level 0: [        1024 bytes        ] (2^10)
-Level 1: [  512  ][  512  ]           (2^9)
-Level 2: [ 256 ][ 256 ][ 256 ][ 256 ] (2^8)
-Level 3: [128][128][128][128][128][128][128][128] (2^7)
-```
-
-### Buddy Allocation Algorithm
-
-```
-Allocation Process:
-1. Round request size up to nearest power of 2
-2. Find the smallest available block >= request size
-3. If block is too large, recursively split in half
-4. Mark allocated block as used
-5. Update buddy system tree structure
-
-Deallocation Process:
-1. Mark block as free
-2. Check if buddy block is also free
-3. If both buddies are free, coalesce into larger block
-4. Recursively check parent level for coalescing
-5. Update tree structure
-```
-
-### Advantages of Buddy System (Not Implemented)
-- **Fast Allocation/Deallocation**: O(log n) time complexity
-- **Automatic Coalescing**: Buddies naturally merge
-- **Reduced External Fragmentation**: Power-of-2 sizes
-- **Simple Implementation**: Binary tree structure
-
-### Why Not Implemented
-- **Internal Fragmentation**: Significant waste for non-power-of-2 requests
-- **Complexity**: More complex than required for basic simulation
-- **Memory Overhead**: Additional metadata for tree structure
 
 ---
 
