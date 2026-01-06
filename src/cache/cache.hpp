@@ -82,6 +82,7 @@ struct cachelevel{
                 cache[set].erase(it);
                 cache[set].push_front(hit_line);
                 found = 1 ;
+                break; // Exit loop after finding and moving the element
             }
         }
 

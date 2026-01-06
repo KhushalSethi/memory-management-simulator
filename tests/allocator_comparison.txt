@@ -1,25 +1,52 @@
 init memory 1000
-set allocator best
+set allocator first
+malloc 100
 malloc 200
 malloc 100
-malloc 300
-malloc 50
+malloc 150
+malloc 100
+dump
+stats
+free 2
+free 4
+dump
+stats
+malloc 80
+malloc 60
+dump
+stats
+init memory 1000
+set allocator best
+malloc 100
+malloc 200
+malloc 100
+malloc 150
+malloc 100
+dump
+stats
+free 2
+free 4
+dump
+stats
+malloc 80
+malloc 60
 dump
 stats
 init memory 1000
 set allocator worst
+malloc 100
 malloc 200
 malloc 100
-malloc 300
-malloc 50
+malloc 150
+malloc 100
 dump
 stats
-init memory 1000
-set allocator first
-malloc 200
-malloc 100
-malloc 300
-malloc 50
+free 2
+free 4
+dump
+stats
+malloc 80
+malloc 60
 dump
 stats
 exit
