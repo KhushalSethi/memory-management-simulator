@@ -163,7 +163,6 @@ memory-simulator/
 │   ├── page_fault_test.txt
 │   ├── allocator_comparison.txt
 │   └── full_system_test.txt
-├── results/                  # Expected test outputs
 ├── Demonstration/            # Screenshots and demonstration materials
 ├── Documentation/            # Technical documentation
 ├── CMakeLists.txt           # Build configuration
@@ -190,7 +189,7 @@ Get-Content tests\allocator_comparison.txt | .\memory_simulator.exe
 - **First-fit & Best-fit**: 37.5% fragmentation
 - **Worst-fit**: 62.5% fragmentation (highest)
 
-All test results are available in the `results/` directory.
+Run tests from the `tests/` directory to see live results.
 
 ## Implementation Details
 

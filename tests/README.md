@@ -13,11 +13,6 @@ chmod +x run_all_tests.sh
 ./run_all_tests.sh
 ```
 
-### Validating Results
-```bash
-python validate_results.py
-```
-
 ## Test Categories
 
 ### 1. Memory Allocation Tests
@@ -37,11 +32,6 @@ python validate_results.py
 
 ### 4. Integration Tests
 - `full_system_test.txt` - All subsystems working together
-
-## Test Results
-
-Results are saved in the `results/` directory with corresponding filenames.
-Use `validate_results.py` to automatically check test correctness.
 
 ## Expected Outputs
 
@@ -65,7 +55,7 @@ Use `validate_results.py` to automatically check test correctness.
 You can also run the simulator interactively:
 
 ```cmd
-memsim.exe
+memory_simulator.exe
 ```
 
 Then use commands like:
@@ -78,15 +68,11 @@ Then use commands like:
 ## Troubleshooting
 
 ### Tests Not Running
-- Ensure `memsim.exe` is in the project root directory
-- Compile the simulator first: `g++ src/main.cpp -o memsim.exe`
+- Ensure `memory_simulator.exe` is in the project root directory
+- Compile the simulator first using the build instructions in the main README
 
-### Validation Failures  
+### Unexpected Output
 - Check that test outputs contain expected patterns
 - Verify simulator is working correctly with manual testing
-- Review individual result files in `results/` directory
-
-### Missing Results
-- Ensure tests directory contains all test files
-- Check that results directory is created automatically
-- Verify file permissions allow writing to results directory
+- Review cache fix: cache hits should show "Found in L1 cache"
+- Fragmentation test should show differences between allocation strategies
