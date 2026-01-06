@@ -1,0 +1,11 @@
+#include <iostream>
+#include "CLI/cli.hpp"
+using namespace std ;
+
+int main(){
+    
+    cli cmd_line ;
+    cmd_line.run() ;
+    
+    return 0;
+}

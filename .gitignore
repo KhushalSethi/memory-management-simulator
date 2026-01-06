@@ -1,0 +1,32 @@
+# Compiled executables
+*.exe
+*.out
+*.app
+
+# Object files
+*.o
+*.obj
+
+# Build directories
+build/
+cmake-build-*/
+
+# IDE files
+.vscode/
+.vs/
+*.vcxproj*
+*.sln
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Log files
+*.log
+
+# PDF files (if you don't want to include the assignment)
+*.pdf
