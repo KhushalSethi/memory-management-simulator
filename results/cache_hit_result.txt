@@ -1,0 +1,16 @@
+Memory Management Simulator
+Type 'help' for available commands
+> memory of size 2048 created 
+> Enter Cache size
+Enter Block Size 
+Enter associativity
+> Found in main memory
+> Found in L1 cache
+> Found in main memory
+> Found in L1 cache
+> Found in L1 cache
+> Found in main memory
+> Found in L1 cache
+> L1 Cache - Hits: 4, Misses: 3, Hit Ratio: 0.571429
+L1 Cache - Hits: 4, Misses: 3, Hit Ratio: 0.571429
+> End

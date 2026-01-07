@@ -163,12 +163,16 @@ memory-simulator/
 │   ├── basic_translation_test.txt
 │   ├── page_fault_test.txt
 │   ├── allocator_comparison.txt
+│   ├── allocation_failure_test.txt
 │   └── full_system_test.txt
+├── results/                  # Test output results (generated)
 ├── Demonstration/            # Screenshots, video and demonstration materials
 ├── Documentation/            # Technical documentation
 ├── CMakeLists.txt           # Build configuration
 ├── build.sh                 # Linux/Mac build script
 ├── build.bat                # Windows build script
+├── run_all_tests.sh         # Linux/Mac test runner
+├── run_all_tests.bat        # Windows test runner
 └── README.md                # This file
 ```
 

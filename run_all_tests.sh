@@ -37,6 +37,18 @@ echo "Test 8: Multi-level Cache Test"
 ./memsim < tests/multilevel_cache_test.txt > results/multilevel_cache_result.txt
 echo "- Multi-level cache test completed"
 
+echo "Test 9: Allocator Comparison Test"
+./memsim < tests/allocator_comparison.txt > results/allocator_comparison_result.txt
+echo "- Allocator comparison test completed"
+
+echo "Test 10: Stress Allocation Test"
+./memsim < tests/stress_allocation_test.txt > results/stress_allocation_result.txt
+echo "- Stress allocation test completed"
+
+echo "Test 11: Allocation Failure Test"
+./memsim < tests/allocation_failure_test.txt > results/allocation_failure_result.txt
+echo "- Allocation failure test completed"
+
 echo
 echo "All tests completed! Check results/ directory for outputs."
 echo "Run python validate_results.py to check test correctness."

@@ -1,0 +1,42 @@
+Memory Management Simulator
+Type 'help' for available commands
+> memory of size 2048 created 
+> Allocator set
+> Enter Cache size
+Enter Block Size 
+Enter associativity
+> Enter Cache size
+Enter Block Size 
+Enter associativity
+> Virtual memory initialized: 4096 virtual, 2048 physical, page size 256
+Virtual memory initialized: 4096 virtual, 2048 physical, page size 256
+> Memory allocated with ID: 1 using best-fit
+> Found in main memory
+> Virtual address 500 -> Physical address 2036
+Virtual address 500 -> Physical address 2036
+> Memory allocated with ID: 2 using best-fit
+> Found in main memory
+> Virtual address 1000 -> Physical address 1768
+Virtual address 1000 -> Physical address 1768
+> Memory with ID 1 freed successfully
+> Found in L1 cache
+> Virtual address 1500 -> Physical address 1500
+Virtual address 1500 -> Physical address 1500
+> Free memory from: 0 to: 199
+Memory alloted from: 200 to: 349 to user with ID: 2
+Free memory from: 350 to: 2047
+> Total memory 2048
+Free memory 1898
+Allocated memory 150
+Memory Utilization 7.32422%
+External Fragmentation 10.5374%
+Internal Fragmentation 0%
+Total Allocation Attempts: 2
+Successful Allocations: 2
+Failed Allocations: 0
+Allocation Success Rate 100%
+> L1 Cache - Hits: 1, Misses: 2, Hit Ratio: 0.333333
+L2 Cache - Hits: 0, Misses: 2, Hit Ratio: 0
+L1 Cache - Hits: 1, Misses: 2, Hit Ratio: 0.333333
+L2 Cache - Hits: 0, Misses: 2, Hit Ratio: 0
+> End

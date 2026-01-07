@@ -42,7 +42,13 @@ Free memory from: 500 to: 1023
 > Total memory 1024
 Free memory 524
 Allocated memory 500
+Memory Utilization 48.8281%
 External Fragmentation 0%
+Internal Fragmentation 0%
+Total Allocation Attempts: 5
+Successful Allocations: 5
+Failed Allocations: 0
+Allocation Success Rate 100%
 > 
 ```
 
@@ -50,6 +56,8 @@ External Fragmentation 0%
 - ✅ Sequential allocation working correctly
 - ✅ Memory blocks allocated contiguously
 - ✅ No fragmentation initially (0%)
+- ✅ Memory utilization: 48.83% (500/1024)
+- ✅ 100% allocation success rate
 - ✅ Correct memory accounting (500 used + 524 free = 1024 total)
 
 ### Fragmentation and Coalescing Demonstration
@@ -104,14 +112,22 @@ Free memory from: 340 to: 799
 > Total memory 800
 Free memory 490
 Allocated memory 310
+Memory Utilization 38.75%
 External Fragmentation 6.12245%
+Internal Fragmentation 0%
+Total Allocation Attempts: 6
+Successful Allocations: 6
+Failed Allocations: 0
+Allocation Success Rate 100%
 ```
 
 **Key Observations:**
 - ✅ Memory fragmentation occurs after deallocation (6.12%)
+- ✅ Memory utilization: 38.75% (310/800 bytes in use)
 - ✅ Automatic coalescing of adjacent free blocks (300-799 combined)
 - ✅ First-fit allocation reuses freed space efficiently
-- ✅ Memory statistics accurately track fragmentation
+- ✅ All 6 allocation attempts successful (100% success rate)
+- ✅ Memory statistics accurately track fragmentation and utilization
 
 ---
 
@@ -348,7 +364,13 @@ Free memory from: 150 to: 2047
 > Total memory 2048
 Free memory 1898
 Allocated memory 150
+Memory Utilization 7.32422%
 External Fragmentation 0%
+Internal Fragmentation 0%
+Total Allocation Attempts: 2
+Successful Allocations: 2
+Failed Allocations: 0
+Allocation Success Rate 100%
 > L1 Cache - Hits: 0, Misses: 1, Hit Ratio: 0
 > 
 ```
@@ -358,7 +380,9 @@ External Fragmentation 0%
 - ✅ **Cache System**: Recording hits/misses correctly
 - ✅ **Virtual Memory**: Address translation functioning
 - ✅ **Memory Management**: Coalescing after free operation
-- ✅ **Statistics**: All subsystems reporting correctly
+- ✅ **Statistics**: All subsystems reporting correctly with comprehensive metrics
+- ✅ **Utilization Tracking**: 7.32% memory utilization (150/2048)
+- ✅ **Success Rate**: 100% allocation success (2/2 attempts)
 
 ---
 
@@ -468,6 +492,10 @@ exit                             - Exit simulator
 | | Worst-fit allocation | ✅ Pass | Comparison test |
 | | Memory coalescing | ✅ Pass | Fragmentation test |
 | | Statistics tracking | ✅ Pass | All tests show correct stats |
+| | Memory utilization | ✅ Pass | Percentage tracking implemented |
+| | Allocation success rate | ✅ Pass | Success/failure tracking |
+| | External fragmentation | ✅ Pass | Fragmentation calculation |
+| | Internal fragmentation | ✅ Pass | Always 0% (exact allocation) |
 | **Cache System** | L1 cache hits/misses | ✅ Pass | Cache performance test |
 | | LRU replacement | ✅ Pass | Replacement test |
 | | Performance metrics | ✅ Pass | Statistics display correctly |
@@ -478,12 +506,40 @@ exit                             - Exit simulator
 | | Help system | ✅ Pass | Help command works |
 | | Error handling | ✅ Pass | Invalid command handling |
 
+### New Metrics Implemented
+
+The simulator now tracks comprehensive memory statistics:
+
+1. **Memory Utilization** - Percentage of total memory currently in use
+2. **Internal Fragmentation** - Always 0% due to exact-size allocation
+3. **External Fragmentation** - Wasted space in free blocks
+4. **Allocation Success Rate** - Percentage of successful allocations
+5. **Total Allocation Attempts** - Count of all malloc requests
+6. **Successful Allocations** - Count of successful allocations
+7. **Failed Allocations** - Count of failed allocation attempts
+
+### Test Suite
+
+The project includes 11 comprehensive tests:
+1. Sequential Allocation Test
+2. Fragmentation Test
+3. Cache Hit Rate Test
+4. LRU Replacement Test
+5. Virtual Memory Translation Test
+6. Page Fault Test
+7. Full System Integration Test
+8. Multi-level Cache Test
+9. Allocator Comparison Test
+10. Stress Allocation Test
+11. **Allocation Failure Test** (demonstrates success/failure rate tracking)
+
 ### Performance Characteristics
 
 - **Memory Allocation**: O(n) time complexity as expected
 - **Cache Access**: Constant time with LRU tracking
 - **Virtual Translation**: Constant time lookup with page fault handling
 - **Memory Usage**: Efficient linked-list implementation
+- **Statistics**: Real-time tracking with minimal overhead
 - **Response Time**: Interactive performance suitable for education
 
 ---

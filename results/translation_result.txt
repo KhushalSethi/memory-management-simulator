@@ -1,0 +1,18 @@
+Memory Management Simulator
+Type 'help' for available commands
+> memory of size 1024 created 
+> Virtual memory initialized: 2048 virtual, 1024 physical, page size 256
+Virtual memory initialized: 2048 virtual, 1024 physical, page size 256
+> Virtual address 0 -> Physical address 768
+Virtual address 0 -> Physical address 768
+> Virtual address 100 -> Physical address 868
+Virtual address 100 -> Physical address 868
+> Virtual address 256 -> Physical address 512
+Virtual address 256 -> Physical address 512
+> Virtual address 500 -> Physical address 756
+Virtual address 500 -> Physical address 756
+> Virtual address 1000 -> Physical address 488
+Virtual address 1000 -> Physical address 488
+> Virtual address 1500 -> Physical address 220
+Virtual address 1500 -> Physical address 220
+> End

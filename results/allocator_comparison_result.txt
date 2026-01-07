@@ -1,0 +1,186 @@
+Memory Management Simulator
+Type 'help' for available commands
+> memory of size 1000 created 
+> Allocator set
+> Memory allocated with ID: 1 using first-fit
+> Memory allocated with ID: 2 using first-fit
+> Memory allocated with ID: 3 using first-fit
+> Memory allocated with ID: 4 using first-fit
+> Memory allocated with ID: 5 using first-fit
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Memory alloted from: 100 to: 299 to user with ID: 2
+Memory alloted from: 300 to: 399 to user with ID: 3
+Memory alloted from: 400 to: 549 to user with ID: 4
+Memory alloted from: 550 to: 649 to user with ID: 5
+Free memory from: 650 to: 999
+> Total memory 1000
+Free memory 350
+Allocated memory 650
+Memory Utilization 65%
+External Fragmentation 0%
+Internal Fragmentation 0%
+Total Allocation Attempts: 5
+Successful Allocations: 5
+Failed Allocations: 0
+Allocation Success Rate 100%
+> Memory with ID 2 freed successfully
+> Memory with ID 4 freed successfully
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Free memory from: 100 to: 299
+Memory alloted from: 300 to: 399 to user with ID: 3
+Free memory from: 400 to: 549
+Memory alloted from: 550 to: 649 to user with ID: 5
+Free memory from: 650 to: 999
+> Total memory 1000
+Free memory 700
+Allocated memory 300
+Memory Utilization 30%
+External Fragmentation 50%
+Internal Fragmentation 0%
+Total Allocation Attempts: 5
+Successful Allocations: 5
+Failed Allocations: 0
+Allocation Success Rate 100%
+> Memory allocated with ID: 6 using first-fit
+> Memory allocated with ID: 7 using first-fit
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Memory alloted from: 100 to: 179 to user with ID: 6
+Memory alloted from: 180 to: 239 to user with ID: 7
+Free memory from: 240 to: 299
+Memory alloted from: 300 to: 399 to user with ID: 3
+Free memory from: 400 to: 549
+Memory alloted from: 550 to: 649 to user with ID: 5
+Free memory from: 650 to: 999
+> Total memory 1000
+Free memory 560
+Allocated memory 440
+Memory Utilization 44%
+External Fragmentation 37.5%
+Internal Fragmentation 0%
+Total Allocation Attempts: 7
+Successful Allocations: 7
+Failed Allocations: 0
+Allocation Success Rate 100%
+> memory of size 1000 created 
+> Allocator set
+> Memory allocated with ID: 1 using best-fit
+> Memory allocated with ID: 2 using best-fit
+> Memory allocated with ID: 3 using best-fit
+> Memory allocated with ID: 4 using best-fit
+> Memory allocated with ID: 5 using best-fit
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Memory alloted from: 100 to: 299 to user with ID: 2
+Memory alloted from: 300 to: 399 to user with ID: 3
+Memory alloted from: 400 to: 549 to user with ID: 4
+Memory alloted from: 550 to: 649 to user with ID: 5
+Free memory from: 650 to: 999
+> Total memory 1000
+Free memory 350
+Allocated memory 650
+Memory Utilization 65%
+External Fragmentation 0%
+Internal Fragmentation 0%
+Total Allocation Attempts: 5
+Successful Allocations: 5
+Failed Allocations: 0
+Allocation Success Rate 100%
+> Memory with ID 2 freed successfully
+> Memory with ID 4 freed successfully
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Free memory from: 100 to: 299
+Memory alloted from: 300 to: 399 to user with ID: 3
+Free memory from: 400 to: 549
+Memory alloted from: 550 to: 649 to user with ID: 5
+Free memory from: 650 to: 999
+> Total memory 1000
+Free memory 700
+Allocated memory 300
+Memory Utilization 30%
+External Fragmentation 50%
+Internal Fragmentation 0%
+Total Allocation Attempts: 5
+Successful Allocations: 5
+Failed Allocations: 0
+Allocation Success Rate 100%
+> Memory allocated with ID: 6 using best-fit
+> Memory allocated with ID: 7 using best-fit
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Free memory from: 100 to: 299
+Memory alloted from: 300 to: 399 to user with ID: 3
+Memory alloted from: 400 to: 479 to user with ID: 6
+Memory alloted from: 480 to: 539 to user with ID: 7
+Free memory from: 540 to: 549
+Memory alloted from: 550 to: 649 to user with ID: 5
+Free memory from: 650 to: 999
+> Total memory 1000
+Free memory 560
+Allocated memory 440
+Memory Utilization 44%
+External Fragmentation 37.5%
+Internal Fragmentation 0%
+Total Allocation Attempts: 7
+Successful Allocations: 7
+Failed Allocations: 0
+Allocation Success Rate 100%
+> memory of size 1000 created 
+> Allocator set
+> Memory allocated with ID: 1 using worst-fit
+> Memory allocated with ID: 2 using worst-fit
+> Memory allocated with ID: 3 using worst-fit
+> Memory allocated with ID: 4 using worst-fit
+> Memory allocated with ID: 5 using worst-fit
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Memory alloted from: 100 to: 299 to user with ID: 2
+Memory alloted from: 300 to: 399 to user with ID: 3
+Memory alloted from: 400 to: 549 to user with ID: 4
+Memory alloted from: 550 to: 649 to user with ID: 5
+Free memory from: 650 to: 999
+> Total memory 1000
+Free memory 350
+Allocated memory 650
+Memory Utilization 65%
+External Fragmentation 0%
+Internal Fragmentation 0%
+Total Allocation Attempts: 5
+Successful Allocations: 5
+Failed Allocations: 0
+Allocation Success Rate 100%
+> Memory with ID 2 freed successfully
+> Memory with ID 4 freed successfully
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Free memory from: 100 to: 299
+Memory alloted from: 300 to: 399 to user with ID: 3
+Free memory from: 400 to: 549
+Memory alloted from: 550 to: 649 to user with ID: 5
+Free memory from: 650 to: 999
+> Total memory 1000
+Free memory 700
+Allocated memory 300
+Memory Utilization 30%
+External Fragmentation 50%
+Internal Fragmentation 0%
+Total Allocation Attempts: 5
+Successful Allocations: 5
+Failed Allocations: 0
+Allocation Success Rate 100%
+> Memory allocated with ID: 6 using worst-fit
+> Memory allocated with ID: 7 using worst-fit
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Free memory from: 100 to: 299
+Memory alloted from: 300 to: 399 to user with ID: 3
+Free memory from: 400 to: 549
+Memory alloted from: 550 to: 649 to user with ID: 5
+Memory alloted from: 650 to: 729 to user with ID: 6
+Memory alloted from: 730 to: 789 to user with ID: 7
+Free memory from: 790 to: 999
+> Total memory 1000
+Free memory 560
+Allocated memory 440
+Memory Utilization 44%
+External Fragmentation 62.5%
+Internal Fragmentation 0%
+Total Allocation Attempts: 7
+Successful Allocations: 7
+Failed Allocations: 0
+Allocation Success Rate 100%
+> End

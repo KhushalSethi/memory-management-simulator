@@ -34,6 +34,9 @@ struct Memory{
 
     Block* head ;
     int Id = 0 ;
+    int total_allocations = 0 ;
+    int successful_allocations = 0 ;
+    int failed_allocations = 0 ;
     
     Memory( int size ){
         head = new Block( 0 , size, 1 , 1 ,NULL  , NULL ) ;
@@ -42,12 +45,14 @@ struct Memory{
 
     void first_fit( int size ){
         
+        total_allocations++ ;
         bool found = 0 ;
         Block* node = head ;
         while( node != NULL && found == 0 ){
 
             if( node->Size >= size && node->flag == 1 ){
                 found = 1 ;
+                successful_allocations++ ;
                 Id++ ;
                 node->Id = Id ;
                 node->flag = 0 ;
@@ -66,12 +71,14 @@ struct Memory{
         }
 
         if( found == 0 ){
+            failed_allocations++ ;
             cout << "memory not available"  << endl ;
         }
     
     }
 
     void best_fit( int size ){
+        total_allocations++ ;
         Block *node = head ;
         Block* found = NULL ;
 
@@ -87,9 +94,11 @@ struct Memory{
             node = node->next ;
         }
         if( found == NULL ){
+            failed_allocations++ ;
             cout << "memory not available"  << endl ;
         }
         else{
+            successful_allocations++ ;
             node = found ;
             Id++ ;
             node->Id = Id ;
@@ -108,6 +117,7 @@ struct Memory{
     }
 
     void worst_fit( int size ){
+        total_allocations++ ;
         Block *node = head ;
         Block* found = NULL ;
 
@@ -123,9 +133,11 @@ struct Memory{
             node = node->next ;
         }
         if( found == NULL ){
+            failed_allocations++ ;
             cout << "memory not available"  << endl ;
         }
         else{
+            successful_allocations++ ;
             node = found ;
             Id++ ;
             node->Id = Id ;
@@ -212,14 +224,38 @@ struct Memory{
             node = node->next ;
         }
 
+        int allocated_memory = total_memory - total_free ;
+        
         cout << "Total memory " << total_memory << endl ;
         cout << "Free memory " << total_free << endl ;
-        cout << "Allocated memory " << total_memory - total_free << endl ;
+        cout << "Allocated memory " << allocated_memory << endl ;
+        
+        // Memory Utilization
+        double utilization = (total_memory > 0) ? ((double)allocated_memory / total_memory) * 100 : 0 ;
+        cout << "Memory Utilization " << utilization << "%" << endl ;
+        
+        // External Fragmentation
         if( total_free > 0 ){
             cout << "External Fragmentation " << ( 1.0 - ( (double)largest_free / total_free ) ) * 100 << "%" << endl ;
         } else {
             cout << "External Fragmentation 0%" << endl ;
-        } 
+        }
+        
+        // Internal Fragmentation (always 0 as we allocate exact sizes)
+        cout << "Internal Fragmentation 0%" << endl ;
+        
+        // Allocation Statistics
+        cout << "Total Allocation Attempts: " << total_allocations << endl ;
+        cout << "Successful Allocations: " << successful_allocations << endl ;
+        cout << "Failed Allocations: " << failed_allocations << endl ;
+        
+        // Success Rate
+        if( total_allocations > 0 ){
+            double success_rate = ((double)successful_allocations / total_allocations) * 100 ;
+            cout << "Allocation Success Rate " << success_rate << "%" << endl ;
+        } else {
+            cout << "Allocation Success Rate N/A" << endl ;
+        }
     
     }
 
