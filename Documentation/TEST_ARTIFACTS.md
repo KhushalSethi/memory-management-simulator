@@ -218,27 +218,6 @@ exit
 - Proper frame reallocation
 ```
 
-### Test 3.3: Virtual Memory Access Patterns
-**Description**: Tests various access patterns on virtual memory
-**Expected Behavior**: Efficient page management
-
-```
-# Input Workload: vm_access_patterns.txt
-init virtual 4096 1024 256  # 16 virtual pages, 4 physical frames
-# Sequential access pattern
-translate 0
-translate 256  
-translate 512
-translate 768
-translate 1024  # Should cause page fault and replacement
-# Random access pattern  
-translate 2000
-translate 500
-translate 3000
-translate 1500
-exit
-```
-
 ---
 
 ## 4. Integrated System Tests
@@ -282,29 +261,6 @@ exit
 - Proper resource management
 ```
 
-### Test 4.2: Memory Allocation with Cache Access
-**Description**: Tests cache behavior with dynamically allocated memory
-**Expected Behavior**: Cache should handle allocated memory addresses
-
-```
-# Input Workload: allocation_cache_test.txt
-init memory 1024
-init cache 1
-128
-16
-2
-set allocator first
-malloc 100    # Allocate block at address X
-read [X]      # Read from allocated address (cache miss)
-read [X]      # Read again (cache hit)
-malloc 50     # Allocate another block
-read [X+100]  # Read from second block
-free 1        # Free first block
-read [X]      # Read from freed address (should still work in simulation)
-cache stats
-exit
-```
-
 ---
 
 ## 5. Performance and Stress Tests
@@ -330,48 +286,6 @@ free 6
 [... continue pattern ...]
 stats
 exit
-```
-
-### Test 5.2: Cache Performance Under Load
-**Description**: Stress test cache with many unique addresses
-**Expected Behavior**: Cache should maintain performance metrics
-
-```
-# Input Workload: cache_stress_test.txt
-init memory 16384
-init cache 1
-512
-32
-8
-# Access many unique addresses to force evictions
-read 0
-read 100
-read 200
-[... 1000 unique addresses ...]
-cache stats
-exit
-```
-
-### Test 5.3: Virtual Memory Thrashing Test
-**Description**: Tests behavior when virtual memory exceeds physical capacity
-**Expected Behavior**: High page fault rate but correct operation
-
-```
-# Input Workload: vm_thrashing_test.txt
-init virtual 4096 256 128  # 32 virtual pages, 2 physical frames  
-# Access pattern that will cause constant page faults
-translate 0
-translate 128    
-translate 256    # Page fault
-translate 384    # Page fault  
-translate 0      # Page fault (thrashing)
-translate 128    # Page fault (thrashing)
-exit
-
-# Expected Output:
-- Many page faults due to insufficient physical memory
-- System should still function correctly
-- LRU replacement should work properly
 ```
 
 ---
