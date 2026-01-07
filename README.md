@@ -12,7 +12,7 @@ Complete demonstration materials with screenshots showing:
 - Allocation success/failure rates
 
 See [Demonstration folder](./Demonstration/) for detailed screenshots and test results.
-Video walkthrough: [videoDemonstration.pdf](./videoDemonstration.pdf)
+Video walkthrough: [videoDemoLink.pdf](./videoDemoLink.pdf)
 
 ## 📚 Documentation
 
