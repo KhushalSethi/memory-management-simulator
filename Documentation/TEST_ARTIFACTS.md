@@ -9,6 +9,7 @@ This directory contains comprehensive test artifacts for validating the memory m
 3. **Virtual Memory Tests** - Address translation and page fault handling
 4. **Integrated System Tests** - Combined functionality testing
 5. **Performance and Stress Tests** - Edge cases and performance evaluation
+6. **Failure Scenarios** - Intentional allocation failures and success-rate tracking
 
 ---
 
@@ -31,9 +32,18 @@ dump
 stats
 exit
 
-# Expected Output:
+# Expected Output (key lines):
 Memory Layout: [Used:50][Used:75][Used:100][Used:125][Used:150][Free:524]
-Total Memory: 1024, Free: 524, Used: 500, Blocks: 6
+Total memory 1024
+Free memory 524
+Allocated memory 500
+Memory Utilization 48.8281%
+External Fragmentation 0%
+Internal Fragmentation 0%
+Total Allocation Attempts: 5
+Successful Allocations: 5
+Failed Allocations: 0
+Allocation Success Rate 100%
 Fragmentation: Low (single large free block remaining)
 ```
 
@@ -57,10 +67,14 @@ dump
 stats
 exit
 
-# Expected Output:
+# Expected Output (key lines):
 - Coalescing of adjacent free blocks
 - Efficient reuse of freed space
 - Memory layout showing fragmentation patterns
+- Memory Utilization 38.75%
+- External Fragmentation ~6.12%
+- Internal Fragmentation 0%
+- Allocation Success Rate 100%
 ```
 
 ### Test 1.3: Best Fit vs Worst Fit Comparison
@@ -89,6 +103,36 @@ malloc 50
 dump
 stats
 exit
+```
+
+### Test 1.4: Allocation Failure Scenario
+**Description**: Exercises insufficient memory and fragmentation scenarios to force allocation failures; validates success/failure rate tracking
+**Expected Behavior**: Some malloc requests fail; success rate decreases accordingly
+
+```
+# Input Workload: allocation_failure_test.txt
+init memory 500
+set allocator first
+malloc 100
+malloc 150
+malloc 120
+stats
+malloc 200   # Fails (only 130 free)
+malloc 80
+malloc 50
+stats
+free 2
+malloc 160   # Fails (largest free 150)
+malloc 200   # Fails
+malloc 100   # Succeeds
+stats
+exit
+
+# Expected Output (key lines):
+Allocation Success Rate 83.3333%   # after first failure
+Allocation Success Rate 66.6667%   # after additional failures
+Failed Allocations: 3              # final count
+Internal Fragmentation 0%
 ```
 
 ---
@@ -299,6 +343,8 @@ exit
 echo Running Memory Management Simulator Tests...
 echo.
 
+if not exist results mkdir results
+
 echo Test 1: Sequential Allocation
 memsim.exe < tests\sequential_allocation.txt > results\seq_alloc_result.txt
 echo - Sequential allocation test completed
@@ -326,6 +372,22 @@ echo - Page fault test completed
 echo Test 7: Full System Integration Test
 memsim.exe < tests\full_system_test.txt > results\integration_result.txt
 echo - Integration test completed
+
+echo Test 8: Multi-level Cache Test
+memsim.exe < tests\multilevel_cache_test.txt > results\multilevel_cache_result.txt
+echo - Multi-level cache test completed
+
+echo Test 9: Allocator Comparison Test
+memsim.exe < tests\allocator_comparison.txt > results\allocator_comparison_result.txt
+echo - Allocator comparison test completed
+
+echo Test 10: Stress Allocation Test
+memsim.exe < tests\stress_allocation_test.txt > results\stress_allocation_result.txt
+echo - Stress allocation test completed
+
+echo Test 11: Allocation Failure Test
+memsim.exe < tests\allocation_failure_test.txt > results\allocation_failure_result.txt
+echo - Allocation failure test completed
 
 echo.
 echo All tests completed! Check results\ directory for outputs.
@@ -369,6 +431,22 @@ echo "- Page fault test completed"
 echo "Test 7: Full System Integration Test"  
 ./memsim < tests/full_system_test.txt > results/integration_result.txt
 echo "- Integration test completed"
+
+echo "Test 8: Multi-level Cache Test"
+./memsim < tests/multilevel_cache_test.txt > results/multilevel_cache_result.txt
+echo "- Multi-level cache test completed"
+
+echo "Test 9: Allocator Comparison Test"
+./memsim < tests/allocator_comparison.txt > results/allocator_comparison_result.txt
+echo "- Allocator comparison test completed"
+
+echo "Test 10: Stress Allocation Test"
+./memsim < tests/stress_allocation_test.txt > results/stress_allocation_result.txt
+echo "- Stress allocation test completed"
+
+echo "Test 11: Allocation Failure Test"
+./memsim < tests/allocation_failure_test.txt > results/allocation_failure_result.txt
+echo "- Allocation failure test completed"
 
 echo
 echo "All tests completed! Check results/ directory for outputs."
@@ -453,8 +531,13 @@ def main():
         ("fragmentation_result.txt", validate_allocation_test),  
         ("cache_hit_result.txt", validate_cache_test),
         ("lru_result.txt", validate_cache_test),
+        ("multilevel_cache_result.txt", validate_cache_test),
         ("translation_result.txt", validate_virtual_memory_test),
         ("page_fault_result.txt", validate_virtual_memory_test),
+        ("integration_result.txt", validate_allocation_test),
+        ("allocator_comparison_result.txt", validate_allocation_test),
+        ("stress_allocation_result.txt", validate_allocation_test),
+        ("allocation_failure_result.txt", validate_allocation_test),
     ]
     
     passed = 0
@@ -493,6 +576,9 @@ if __name__ == "__main__":
 - **Efficiency**: Appropriate allocation strategy behavior
 - **Coalescing**: Adjacent free blocks should merge
 - **Fragmentation**: Reasonable fragmentation levels
+- **Utilization**: Memory Utilization percentage reflects Used/Total
+- **Success Rate**: Allocation Success Rate and failed/success counts tracked
+- **Internal Fragmentation**: 0% with exact-size allocation model
 
 ### Cache Tests  
 - **Hit Rate**: Should improve with repeated accesses
@@ -533,6 +619,18 @@ if __name__ == "__main__":
    python validate_results.py
    ```
 
-5. **Analyze outputs** in `results/` directory
+5. **Analyze outputs** in `results/` directory. Generated files include:
+
+    - seq_alloc_result.txt
+    - fragmentation_result.txt
+    - cache_hit_result.txt
+    - lru_result.txt
+    - multilevel_cache_result.txt
+    - translation_result.txt
+    - page_fault_result.txt
+    - integration_result.txt
+    - allocator_comparison_result.txt
+    - stress_allocation_result.txt
+    - allocation_failure_result.txt
 
 These test artifacts provide comprehensive validation of the memory management simulator across all functional areas with automated execution and validation capabilities.
