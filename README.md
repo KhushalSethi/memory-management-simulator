@@ -8,9 +8,11 @@ Complete demonstration materials with screenshots showing:
 - Memory allocation/deallocation behavior
 - Cache hits and misses
 - Page fault handling
+- Memory utilization and fragmentation metrics
+- Allocation success/failure rates
 
 See [Demonstration folder](./Demonstration/) for detailed screenshots and test results.
-Video walkthrough: [videoDemonstration.pdf](./Demonstration/videoDemonstration.pdf)
+Video walkthrough: [videoDemonstration.pdf](./videoDemonstration.pdf)
 
 ## 📚 Documentation
 
@@ -75,7 +77,7 @@ memory_simulator.exe  # Windows
 - `malloc <size>` - Allocate memory block
 - `free <id>` - Free memory block by ID
 - `dump` - Display current memory layout
-- `stats` - Show memory usage statistics and fragmentation
+- `stats` - Show memory usage statistics, fragmentation, utilization %, allocation success/failure rates
 
 #### Cache Management
 - `init cache <1|2>` - Initialize L1 or L2 cache (prompts for parameters)
@@ -119,7 +121,13 @@ Free memory from: 301 to: 1023
 Total memory 1024
 Free memory 724
 Allocated memory 300
-External Fragmentation 0%
+Memory Utilization: 29.30%
+Internal Fragmentation: 0%
+External Fragmentation: 0%
+Allocation Attempts: 2
+Successful Allocations: 2
+Failed Allocations: 0
+Allocation Success Rate: 100.00%
 
 > init cache 1
 Enter Cache size
@@ -173,12 +181,25 @@ memory-simulator/
 ├── build.bat                # Windows build script
 ├── run_all_tests.sh         # Linux/Mac test runner
 ├── run_all_tests.bat        # Windows test runner
+├── validate_results.py      # Test validation script
 └── README.md                # This file
 ```
 
 ## 🧪 Testing
 
-Run automated tests using the test files in the `tests/` directory:
+### Automated Test Suite
+Run all 11 automated tests:
+
+```bash
+# Windows
+run_all_tests.bat
+
+# Linux/Mac
+./run_all_tests.sh
+```
+
+### Individual Tests
+Run specific tests from the `tests/` directory:
 
 ```bash
 # Run individual tests
@@ -190,11 +211,30 @@ Get-Content tests\page_fault_test.txt | .\memory_simulator.exe
 Get-Content tests\allocator_comparison.txt | .\memory_simulator.exe
 ```
 
+### Validating Test Results
+After running tests, validate the output:
+
+```bash
+python validate_results.py
+```
+
+This script validates all 11 test outputs against expected criteria:
+- seq_alloc_result.txt
+- fragmentation_result.txt
+- cache_hit_result.txt
+- lru_result.txt
+- multilevel_cache_result.txt
+- translation_result.txt
+- page_fault_result.txt
+- integration_result.txt
+- allocator_comparison_result.txt
+- stress_allocation_result.txt
+- allocation_failure_result.txt
+
 ### Test Results
 - **First-fit & Best-fit**: 37.5% fragmentation
 - **Worst-fit**: 62.5% fragmentation (highest)
-
-Run tests from the `tests/` directory to see live results.
+- **Allocation Success Rate**: Varies by test (100% to 66.67% depending on memory pressure)
 
 ## Implementation Details
 
@@ -204,7 +244,11 @@ Run tests from the `tests/` directory to see live results.
 - **Worst-Fit**: Maximizes remaining space in blocks, highest fragmentation
 - Uses linked list of memory blocks with automatic coalescing
 - Tracks allocation IDs for proper deallocation
-- Calculates external fragmentation percentage
+- **Metrics Tracking**: 
+  - External and internal fragmentation percentage
+  - Memory utilization percentage
+  - Allocation success/failure rates with counters
+  - Total allocation attempts and success rate percentage
 
 ### Cache Architecture
 - Set-associative cache with configurable parameters
