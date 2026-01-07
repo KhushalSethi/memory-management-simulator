@@ -129,6 +129,133 @@ Allocation Success Rate 100%
 - ✅ All 6 allocation attempts successful (100% success rate)
 - ✅ Memory statistics accurately track fragmentation and utilization
 
+### Allocation Failure and Success Rate Demonstration
+
+**Test Command Sequence:**
+```
+init memory 500
+set allocator first
+malloc 100
+malloc 150
+malloc 120
+dump
+stats
+malloc 200
+malloc 80
+malloc 50
+dump
+stats
+free 2
+dump
+stats
+malloc 160
+malloc 200
+malloc 100
+dump
+stats
+```
+
+**System Output:**
+```
+Memory Management Simulator
+Type 'help' for available commands
+> memory of size 500 created 
+> Allocator set
+> Memory allocated with ID: 1 using first-fit
+> Memory allocated with ID: 2 using first-fit
+> Memory allocated with ID: 3 using first-fit
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Memory alloted from: 100 to: 249 to user with ID: 2
+Memory alloted from: 250 to: 369 to user with ID: 3
+Free memory from: 370 to: 499
+> Total memory 500
+Free memory 130
+Allocated memory 370
+Memory Utilization 74%
+External Fragmentation 0%
+Internal Fragmentation 0%
+Total Allocation Attempts: 3
+Successful Allocations: 3
+Failed Allocations: 0
+Allocation Success Rate 100%
+> memory not available
+> Memory allocated with ID: 4 using first-fit
+> Memory allocated with ID: 5 using first-fit
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Memory alloted from: 100 to: 249 to user with ID: 2
+Memory alloted from: 250 to: 369 to user with ID: 3
+Memory alloted from: 370 to: 449 to user with ID: 4
+Memory alloted from: 450 to: 499 to user with ID: 5
+> Total memory 500
+Free memory 0
+Allocated memory 500
+Memory Utilization 100%
+External Fragmentation 0%
+Internal Fragmentation 0%
+Total Allocation Attempts: 6
+Successful Allocations: 5
+Failed Allocations: 1
+Allocation Success Rate 83.3333%
+> Memory with ID 2 freed successfully
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Free memory from: 100 to: 249
+Memory alloted from: 250 to: 369 to user with ID: 3
+Memory alloted from: 370 to: 449 to user with ID: 4
+Memory alloted from: 450 to: 499 to user with ID: 5
+> Total memory 500
+Free memory 150
+Allocated memory 350
+Memory Utilization 70%
+External Fragmentation 0%
+Internal Fragmentation 0%
+Total Allocation Attempts: 6
+Successful Allocations: 5
+Failed Allocations: 1
+Allocation Success Rate 83.3333%
+> memory not available
+> memory not available
+> Memory allocated with ID: 6 using first-fit
+> Memory alloted from: 0 to: 99 to user with ID: 1
+Memory alloted from: 100 to: 199 to user with ID: 6
+Free memory from: 200 to: 249
+Memory alloted from: 250 to: 369 to user with ID: 3
+Memory alloted from: 370 to: 449 to user with ID: 4
+Memory alloted from: 450 to: 499 to user with ID: 5
+> Total memory 500
+Free memory 50
+Allocated memory 450
+Memory Utilization 90%
+External Fragmentation 0%
+Internal Fragmentation 0%
+Total Allocation Attempts: 9
+Successful Allocations: 6
+Failed Allocations: 3
+Allocation Success Rate 66.6667%
+> End
+```
+
+**Failure Analysis:**
+
+**Stage 1 - Memory Full:**
+- After 3 allocations (100 + 150 + 120 = 370 bytes), only 130 bytes free
+- **malloc 200 fails** - not enough contiguous space
+- malloc 80 and 50 succeed using remaining space
+- **Result:** 5 successful, 1 failed → **83.33% success rate**
+
+**Stage 2 - Fragmentation Prevents Allocation:**
+- Free ID 2 (150 bytes), creating 150-byte free block
+- **malloc 160 fails** - largest block is only 150 bytes
+- **malloc 200 fails** - still not enough space
+- malloc 100 succeeds, fits in freed 150-byte block
+- **Result:** 6 successful, 3 failed → **66.67% success rate**
+
+**Key Observations:**
+- ✅ Failed allocations properly tracked and reported
+- ✅ Success rate decreases as failures accumulate (100% → 83.33% → 66.67%)
+- ✅ Memory utilization tracks full capacity (74% → 100% → 70% → 90%)
+- ✅ System correctly identifies insufficient memory scenarios
+- ✅ Statistics provide clear visibility into allocation performance
+
 ---
 
 ## 2. Cache Hit/Miss Behavior
