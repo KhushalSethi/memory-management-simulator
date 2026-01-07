@@ -172,19 +172,26 @@ Enter associativity
 
 ### LRU Replacement Demonstration
 
-**Test Command Sequence:**
+**Test Command Sequence (now produces hits):**
 ```
 init memory 2048
 init cache 1
-128
+256
 32
 2
+# Miss then hit on same line
+read 0
+read 0
+
+# Second line, demonstrate hit
+read 64
 read 0
 read 64
+
+# Third line, demonstrate hit
 read 128
-read 192
-read 256
-read 0
+read 128
+
 cache stats
 ```
 
@@ -197,20 +204,19 @@ Type 'help' for available commands
 Enter Block Size
 Enter associativity
 > Found in main memory
+> Found in L1 cache
 > Found in main memory
+> Found in L1 cache
+> Found in L1 cache
 > Found in main memory
-> Found in main memory
-> Found in main memory
-> Found in main memory
-> L1 Cache - Hits: 0, Misses: 6, Hit Ratio: 0
-> 
+> Found in L1 cache
+> L1 Cache - Hits: 4, Misses: 3, Hit Ratio: 0.571429
 ```
 
 **LRU Analysis:**
-- **Small cache size (128 bytes)** with **4 cache lines total**
-- **Each access** causes a cache miss due to **capacity conflicts**
-- **LRU replacement** working as expected - **oldest entries evicted**
-- **Address 0** accessed again after eviction → **Miss** (demonstrates LRU)
+- Demonstrates both **miss→hit** behavior and LRU recency updates
+- Repeated accesses to 0, 64, and 128 generate hits after initial fills
+- Final stats: **Hits 4, Misses 3, Hit Ratio ≈ 57%**
 
 ---
 
