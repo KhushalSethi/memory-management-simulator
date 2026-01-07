@@ -10,6 +10,7 @@ Complete demonstration materials with screenshots showing:
 - Page fault handling
 
 See [Demonstration folder](./Demonstration/) for detailed screenshots and test results.
+Video walkthrough: [videoDemonstration.pdf](./Demonstration/videoDemonstration.pdf)
 
 ## 📚 Documentation
 
@@ -163,7 +164,7 @@ memory-simulator/
 │   ├── page_fault_test.txt
 │   ├── allocator_comparison.txt
 │   └── full_system_test.txt
-├── Demonstration/            # Screenshots and demonstration materials
+├── Demonstration/            # Screenshots, video and demonstration materials
 ├── Documentation/            # Technical documentation
 ├── CMakeLists.txt           # Build configuration
 ├── build.sh                 # Linux/Mac build script
